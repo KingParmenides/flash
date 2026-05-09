@@ -1,4 +1,4 @@
-import OffersManager from "@app/offers/OffersManager"
+import CashoutManager from "@app/offers/CashoutManager"
 import { alice } from "../jest.setup"
 import OffersRepository from "@app/offers/storage/Redis"
 import { RepositoryError } from "@domain/errors"
@@ -42,7 +42,7 @@ afterEach(async () => {
 
 describe("Offers", () => {
   it("successfully makes and persists an offer using default config", async () => {
-    const offer = await (new OffersManager().makeCashoutOffer(alice.usdWalletD.id, send))
+    const offer = await (new CashoutManager().makeCashoutOffer(alice.usdWalletD.id, send))
    
     if (offer instanceof Error) throw offer
     expect(offer.ibexTransfer.amount).toEqual(send.amount)
